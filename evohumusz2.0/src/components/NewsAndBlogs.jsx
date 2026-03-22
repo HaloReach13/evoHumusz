@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { Grid } from '@mui/material'; // A layout tartásához továbbra is jó a Grid
+import { Grid } from '@mui/material';
 import { CardModel } from '../models/Cardmodel';
 import { CardLarge, CardMedium, CardSmall } from '../components/Cards';
 
 class NewsAndBlogs extends Component {
   constructor(props) {
     super(props);
-    // A küldött képed mintájára inicializáljuk a state-et
     this.state = {
       cards: [],
     };
@@ -36,11 +35,9 @@ class NewsAndBlogs extends Component {
   render() {
     const { cards } = this.state;
 
-    // Ha idáig eljut a kód, biztosak lehetünk benne, hogy van adat.
-    // A logikád alapján szétosztjuk az elemeket (L, M, S)
     const largeCard = cards[0]; // 1 db
-    const mediumCards = cards.slice(1, 3); // 2 db
-    const smallCards = cards.slice(3, 7); // 4 db
+    const mediumCards = cards.slice(1, 3);
+    const smallCards = cards.slice(3, 7);
 
     return (
       <div style={{ padding: '2rem' }}>

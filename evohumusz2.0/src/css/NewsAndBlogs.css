@@ -1,4 +1,3 @@
-/* Közös kártya alapok */
 .card-base {
   position: relative;
   border-radius: 12px;
@@ -13,7 +12,6 @@
   background-color: #333;
 }
 
-/* Kártya méretek (Magasságok) */
 .card-large { 
   height: 450px;
   width: 100%;
@@ -29,7 +27,6 @@
   width: 300px;
 }
 
-/* Sötétítő réteg a képen */
 .card-overlay {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -38,14 +35,12 @@
   z-index: 1;
 }
 
-/* Tartalom pozícionálása */
 .card-content {
   position: relative;
   z-index: 2;
   padding: 24px;
 }
 
-/* Címke a jobb felső sarokban */
 .card-badge {
   position: absolute;
   top: 20px;
@@ -61,7 +56,6 @@
   -webkit-backdrop-filter: blur(6px);
 }
 
-/* Tipográfia */
 .card-title { margin: 0 0 8px 0; font-weight: bold; }
 .card-desc { margin: 0 0 12px 0; opacity: 0.8; font-size: 0.9rem; }
 .card-date { margin: 0; opacity: 0.6; font-size: 0.8rem; text-transform: uppercase; }
