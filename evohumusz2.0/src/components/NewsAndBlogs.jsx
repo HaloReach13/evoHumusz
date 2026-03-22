@@ -1,0 +1,75 @@
+import React, { Component } from 'react';
+import { Grid } from '@mui/material'; // A layout tartásához továbbra is jó a Grid
+import { CardModel } from '../models/Cardmodel';
+import { CardLarge, CardMedium, CardSmall } from '../components/Cards';
+
+class NewsAndBlogs extends Component {
+  constructor(props) {
+    super(props);
+    // A küldött képed mintájára inicializáljuk a state-et
+    this.state = {
+      cards: [],
+    };
+  }
+
+  componentDidMount() {
+    const mockData = [
+        { id: "1", title: "Üdvözlünk a Humusz Szövetségnél!", description: "Ismerd meg a nulla hulladék felé vezető utat és szakmai tevékenységünket.", type: "hír", image: "https://humusz.hu/sites/default/files/lead-kepek/humusz_weboldal_fejlec.png", date: "2026-03-15" },
+        { id: "2", title: "Tudatos kampányaink a közösségi médiában", description: "Csatlakozz hozzánk a Facebookon is, és értesülj elsőként a legújabb zöld hírekről.", type: "blog", image: "https://humusz.hu/sites/default/files/lead-kepek/_cover_940x300_facebook-hirdetes_0.png", date: "2026-03-12" },
+        { id: "3", title: "Keresd szakértő csapatunkat", description: "Szakmai tanácsadóink segítenek az önkormányzatoknak és cégeknek a zöldülésben.", type: "hír", image: "https://humusz.hu/sites/default/files/lead-kepek/csapattars1.png", date: "2026-03-10" },
+        { id: "4", title: "Újrahasználati Hősök 2026", description: "Pályázatunk keretében keressük azokat, akik példát mutatnak a hulladékmegelőzésben.", type: "blog", image: "https://humusz.hu/sites/default/files/lead-kepek/mirehu_recycling-heroes-2026.jpg", date: "2026-03-08" },
+        { id: "5", title: "Élesztő: Közösségi tér és komposztpont", description: "Látogass el hozzánk, és nézd meg, hogyan működik a városi komposztálás a gyakorlatban.", type: "hír", image: "https://humusz.hu/sites/default/files/lead-kepek/eleszto.png", date: "2026-03-05" },
+        { id: "6", title: "Stop Élelmiszerpazarlás!", description: "Praktikus tanácsok, hogyan mentsd meg az ételt és csökkentsd a konyhai szemetet.", type: "blog", image: "https://humusz.hu/sites/default/files/lead-kepek/etel.png", date: "2026-03-02" },
+        { id: "7", title: "Fenntartható étkezés a mindennapokban", description: "Mire figyeljünk vásárláskor? Tippek a csomagolásmentes életmódhoz.", type: "hír", image: "https://humusz.hu/sites/default/files/lead-kepek/etel_.png", date: "2026-02-28" },
+        { id: "8", title: "Vizeink védelme és a műanyagszennyezés", description: "Hogyan óvhatjuk meg az élővizeinket az egyszer használatos műanyagoktól?", type: "blog", image: "https://humusz.hu/sites/default/files/lead-kepek/ocean_clenup.png", date: "2026-02-24" },
+        { id: "9", title: "Szakmai workshop a komposztálásról", description: "Sikeresen lezajlott a tavaszi képzésünk, ahol a lakossági megoldásokat mutattuk be.", type: "hír", image: "https://humusz.hu/sites/default/files/blog-betekinto-kepek/img_7931-768x576.jpeg", date: "2026-02-20" },
+        { id: "10", title: "Zöld közösségi pillanatok", description: "Pillanatképek legutóbbi rendezvényünkről, ahol együtt tettünk a környezetért.", type: "blog", image: "https://humusz.hu/sites/default/files/blog-betekinto-kepek/487911640_1088316699997505_6974445226572605970_n.jpg", date: "2026-02-17" },
+        { id: "11", title: "Tavaszi Pucolj-ki Akció", description: "Regisztrálj te is az országos szemétszedési kampányunkra!", type: "blog", image: "https://humusz.hu/sites/default/files/post-pucolj-ki-1500x1000-humusz.jpg", date: "2026-03-18" },
+        { id: "12", title: "Látogass el a Humusz Házba!", description: "Várunk interaktív kiállításunkkal és fenntarthatósági programjainkkal minden hétköznap.", type: "hír", image: "https://humusz.hu/sites/default/files/lead-kepek/20250625_bn_humuszhaz-48.jpg", date: "2026-03-17" }
+      ];
+
+      const formattedData = mockData.map(d => new CardModel(d.id, d.title, d.description, d.type, d.image, d.date));
+
+      this.setState({ cards: formattedData });
+  }
+
+  render() {
+    const { cards } = this.state;
+
+    // Ha idáig eljut a kód, biztosak lehetünk benne, hogy van adat.
+    // A logikád alapján szétosztjuk az elemeket (L, M, S)
+    const largeCard = cards[0]; // 1 db
+    const mediumCards = cards.slice(1, 3); // 2 db
+    const smallCards = cards.slice(3, 7); // 4 db
+
+    return (
+      <div style={{ padding: '2rem' }}>
+        <Grid container spacing={3}>
+
+          {mediumCards.map(card => (
+            <Grid item xs={12} md={6} key={card.id}>
+              <CardMedium model={card} />
+            </Grid>
+          ))}
+
+          {smallCards.map(card => (
+            <Grid item xs={12} sm={6} md={3} key={card.id}>
+              <CardSmall model={card} />
+            </Grid>
+          ))}
+
+        </Grid>
+
+        <div style={{ marginTop: '2rem' }}>
+          {largeCard && (
+            <Grid item xs={12} md={12}>
+              <CardLarge model={largeCard} />
+            </Grid>
+          )}
+        </div>
+      </div>
+    );
+  }
+}
+
+export default NewsAndBlogs;
