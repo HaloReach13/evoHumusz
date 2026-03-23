@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid } from '@mui/material';
 import { CardModel } from '../models/Cardmodel';
-import { CardLarge, CardMedium, CardSmall } from '../components/Cards';
+import { LargeCard, MediumCard, SmallCard } from './Card';
 
 class NewsAndBlogs extends Component {
   constructor(props) {
@@ -35,23 +35,23 @@ class NewsAndBlogs extends Component {
   render() {
     const { cards } = this.state;
 
-    const largeCard = cards[0]; // 1 db
-    const mediumCards = cards.slice(1, 3);
-    const smallCards = cards.slice(3, 7);
+    const largeCard = cards[0];
+    const mediumCards = cards.slice(1, 4);
+    const smallCards = cards.slice(4, 8);
 
     return (
       <div style={{ padding: '2rem' }}>
         <Grid container spacing={3}>
 
           {mediumCards.map(card => (
-            <Grid item xs={12} md={6} key={card.id}>
-              <CardMedium model={card} />
+            <Grid key={card.id}>
+              <MediumCard model={card} />
             </Grid>
           ))}
 
           {smallCards.map(card => (
-            <Grid item xs={12} sm={6} md={3} key={card.id}>
-              <CardSmall model={card} />
+            <Grid key={card.id}>
+              <SmallCard model={card} />
             </Grid>
           ))}
 
@@ -59,8 +59,8 @@ class NewsAndBlogs extends Component {
 
         <div style={{ marginTop: '2rem' }}>
           {largeCard && (
-            <Grid item xs={12} md={12}>
-              <CardLarge model={largeCard} />
+            <Grid>
+              <LargeCard model={largeCard} />
             </Grid>
           )}
         </div>
