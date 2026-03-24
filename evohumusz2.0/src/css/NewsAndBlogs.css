@@ -15,18 +15,18 @@
 }
 
 .card-large {
-  height: 450px;
+  height: 500px;
   width: 100%;
 }
 
 .card-medium {
-  height: 320px;
-  width: 400px;
+  height: 500px;
+  width: 100%;
 }
 
 .card-small {
-  height: 250px;
-  width: 300px;
+  height: 380px;
+  width: 100%;
 }
 
 .card-overlay {
@@ -62,12 +62,13 @@
 }
 
 .card-title {
-  margin: 0 0 8px 0;
+  margin: 0 0 12px 0;
   font-weight: bold;
+  font-size: 1.8rem;
 }
 
 .card-desc {
-  margin: 0 0 12px 0;
+  margin: 0 0 32px 0;
   opacity: 0.8;
   font-size: 0.9rem;
 }
