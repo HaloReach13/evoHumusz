@@ -1,16 +1,116 @@
+export const colors = {
+    hoverGreen: '#4A7C45',
+    activeGreen: '#3B6337',
+    ctaOrange: '#C8581A',
+    ctaOrangeHover: '#A84615',
+    text: '#1A1A1A',
+};
+
 export const styles = {
     appBar: {
-        backgroundColor: '#ffffff',
-        color: '#000000',
-        boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.1)',
+        backgroundColor: '#f7faf7',
+        color: colors.text,
+        boxShadow: '0px 2px 8px rgba(0,0,0,0.08)',
+        position: 'sticky',
+        top: 0,
+        zIndex: 1100,
     },
-    logo: {
-        flexGrow: 1
+    toolbar: {
+        minHeight: '72px',
+        px: { xs: 2, md: 4 },
+        gap: '4px',
+    },
+    logoWrapper: {
+        flexGrow: 1,
+        display: 'flex',
+        alignItems: 'center',
+    },
+    logoImg: {
+        maxHeight: '48px',
+        width: 'auto',
+        display: 'block',
     },
     menuButton: {
-        color: '#000000',
-        textTransform: 'none',
-        fontSize: '18px',
-        marginLeft: '10px',
-    }
+        color: colors.text,
+        textTransform: 'none' as const,
+        fontSize: '17px',
+        fontWeight: 700,
+        letterSpacing: '0.01em',
+        px: 1.5,
+        py: 1,
+        borderRadius: '6px',
+        position: 'relative',
+        transition: 'color 0.2s ease',
+        '&::after': {
+            content: '""',
+            position: 'absolute',
+            bottom: '4px',
+            left: '12px',
+            right: '12px',
+            height: '2px',
+            backgroundColor: colors.hoverGreen,
+            transform: 'scaleX(0)',
+            transformOrigin: 'center',
+            transition: 'transform 0.22s ease',
+            borderRadius: '2px',
+        },
+        '&:hover': {
+            color: colors.hoverGreen,
+            backgroundColor: 'rgba(74,124,69,0.06)',
+            '&::after': {
+                transform: 'scaleX(1)',
+            },
+        },
+    },
+    menuButtonActive: {
+        color: colors.activeGreen,
+        backgroundColor: 'rgba(74,124,69,0.1)',
+        '&::after': {
+            transform: 'scaleX(1)',
+        },
+    },
+    ctaButton: {
+        color: '#ffffff',
+        backgroundColor: colors.ctaOrange,
+        textTransform: 'none' as const,
+        fontSize: '17px',
+        fontWeight: 800,
+        letterSpacing: '0.02em',
+        px: 2.5,
+        py: 1,
+        ml: 1.5,
+        mr: 3,
+        borderRadius: '8px',
+        boxShadow: '0 2px 8px rgba(200,88,26,0.35)',
+        transition: 'background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease',
+        '&:hover': {
+            backgroundColor: colors.ctaOrangeHover,
+            boxShadow: '0 4px 14px rgba(200,88,26,0.45)',
+            transform: 'translateY(-1px)',
+        },
+        '&:active': {
+            transform: 'translateY(0)',
+        },
+    },
+    dropdownMenu: {
+        '& .MuiPaper-root': {
+            borderRadius: '10px',
+            mt: 0.5,
+            boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
+            border: '1px solid rgba(0,0,0,0.06)',
+        },
+    },
+    dropdownItem: {
+        fontSize: '14px',
+        fontWeight: 500,
+        color: colors.text,
+        py: 1,
+        px: 2.5,
+        minWidth: '200px',
+        transition: 'color 0.15s ease, background-color 0.15s ease',
+        '&:hover': {
+            color: colors.hoverGreen,
+            backgroundColor: 'rgba(74,124,69,0.07)',
+        },
+    },
 };

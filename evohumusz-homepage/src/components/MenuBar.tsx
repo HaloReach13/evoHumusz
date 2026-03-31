@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Button, Toolbar, Typography, Menu, Fade, MenuItem } from '@mui/material';
+import { AppBar, Button, Toolbar, Box, Menu, Fade, MenuItem } from '@mui/material';
 import { menuData } from '../data/MenuData';
 import { styles } from '../styles/Menu.styles';
 
@@ -16,42 +16,61 @@ const MenuBar = () => {
         setAnchorEl(null);
         setOpenMenuIndex(null);
     };
-    return (
-        <AppBar position="static" sx={styles.appBar}>
-            <Toolbar>
-                <Typography variant="h5" component="div" sx={styles.logo}>
-                    <img src="https://humusz.hu/sites/default/files/humusz-logo.png" alt="logo" />
-                </Typography>
 
-                {menuData.map((menu, index) => (
-                    <React.Fragment key={menu.title}>
-                        <Button
-                            aria-controls={openMenuIndex === index ? `fade-menu-${index}` : undefined}
-                            aria-haspopup="true"
-                            aria-expanded={openMenuIndex === index ? 'true' : undefined}
-                            onClick={(e) => handleClick(e, index)}
-                            sx={styles.menuButton}
-                        >
-                            {menu.title}
-                        </Button>
-                        <Menu
-                            id={`fade-menu-${index}`}
-                            anchorEl={anchorEl}
-                            open={openMenuIndex === index}
-                            onClose={handleClose}
-                            TransitionComponent={Fade}
-                        >
-                            {menu.items.map((item) => (
-                                <MenuItem key={item} onClick={handleClose}>
-                                    {item}
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </React.Fragment>
-                ))}
+    return (
+        <AppBar position="sticky" sx={styles.appBar}>
+            <Toolbar sx={styles.toolbar}>
+                {/* Logo */}
+                <Box sx={styles.logoWrapper}>
+                    <img
+                        src="https://humusz.hu/sites/default/files/humusz-logo.png"
+                        alt="Humusz Szövetség"
+                        style={styles.logoImg}
+                    />
+                </Box>
+
+                {/* Navigációs gombok – mind az 5 menüpont */}
+                {menuData.map((menu, index) => {
+                    const isOpen = openMenuIndex === index;
+                    return (
+                        <React.Fragment key={menu.title}>
+                            <Button
+                                aria-controls={isOpen ? `fade-menu-${index}` : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={isOpen ? 'true' : undefined}
+                                onClick={(e) => handleClick(e, index)}
+                                sx={{
+                                    ...styles.menuButton,
+                                    ...(isOpen ? styles.menuButtonActive : {}),
+                                }}
+                            >
+                                {menu.title}
+                            </Button>
+                            <Menu
+                                id={`fade-menu-${index}`}
+                                anchorEl={anchorEl}
+                                open={isOpen}
+                                onClose={handleClose}
+                                TransitionComponent={Fade}
+                                sx={styles.dropdownMenu}
+                            >
+                                {menu.items.map((item) => (
+                                    <MenuItem key={item} onClick={handleClose} sx={styles.dropdownItem}>
+                                        {item}
+                                    </MenuItem>
+                                ))}
+                            </Menu>
+                        </React.Fragment>
+                    );
+                })}
+
+                {/* CTA gomb – önálló, nem dropdown */}
+                <Button sx={styles.ctaButton}>
+                    Adományozz!
+                </Button>
             </Toolbar>
         </AppBar>
     );
-}
+};
 
 export default MenuBar;
